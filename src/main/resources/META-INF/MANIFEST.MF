@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Main-Class: fun.zulin.tmd.TmdApplication
+Class-Path: jsqlparser-4.9.jar mybatis-plus-extension-3.5.6.jar slf4j-ap
+ i-2.0.13.jar tdlight-natives-4.0.506-windows_amd64.jar tdlight-natives-
+ 4.0.506-linux_arm64_clang_ssl3.jar tomcat-embed-core-10.1.20.jar spring
+ -tx-6.1.6.jar logback-core-1.4.14.jar auto-table-core-1.7.4.jar spring-
+ web-6.1.6.jar spring-boot-starter-web-3.2.5.jar tdlight-java-3.4.0+td.1
+ .8.26.jar spring-boot-starter-logging-3.2.5.jar spring-expression-6.1.6
+ .jar spring-aop-6.1.6.jar spring-beans-6.1.6.jar lombok-1.18.30.jar jac
+ kson-core-2.15.4.jar tomcat-embed-el-10.1.20.jar spring-context-6.1.6.j
+ ar mybatis-3.5.16.jar spring-boot-starter-tomcat-3.2.5.jar log4j-api-2.
+ 21.1.jar jackson-databind-2.15.4.jar snakeyaml-2.2.jar spring-jcl-6.1.6
+ .jar mybatis-plus-3.5.6.jar micrometer-observation-1.12.5.jar core-3.5.
+ 3.jar jackson-module-parameter-names-2.15.4.jar jul-to-slf4j-2.0.13.jar
+  spring-boot-starter-websocket-3.2.5.jar jackson-annotations-2.15.4.jar
+  spring-boot-autoconfigure-3.2.5.jar mybatis-plus-spring-boot3-starter-
+ 3.5.6.jar spring-websocket-6.1.6.jar spring-core-6.1.6.jar jakarta.anno
+ tation-api-2.1.1.jar logback-classic-1.4.14.jar auto-table-spring-boot-
+ starter-1.7.4.jar mybatis-plus-core-3.5.6.jar atlassian-util-concurrent
+ -4.0.1.jar tdlight-api-4.0.476.jar reactive-streams-1.0.4.jar tdlight-n
+ atives-4.0.506-linux_amd64_clang_ssl3.jar spring-jdbc-6.1.6.jar spring-
+ boot-starter-json-3.2.5.jar jackson-datatype-jdk8-2.15.4.jar spring-web
+ mvc-6.1.6.jar tdlight-api-4.0.476-legacy.jar mybatis-spring-3.0.3.jar h
+ utool-all-5.8.25.jar spring-boot-starter-3.2.5.jar micrometer-commons-1
+ .12.5.jar auto-table-annotation-1.7.4.jar sqlite-jdbc-3.45.3.0.jar myba
+ tis-plus-spring-boot-autoconfigure-3.5.6.jar tomcat-embed-websocket-10.
+ 1.20.jar spring-boot-3.2.5.jar log4j-to-slf4j-2.21.1.jar HikariCP-5.0.1
+ .jar spring-messaging-6.1.6.jar spring-boot-starter-jdbc-3.2.5.jar jack
+ son-datatype-jsr310-2.15.4.jar mybatis-plus-annotation-3.5.6.jar
+

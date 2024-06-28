@@ -1,0 +1,25 @@
+server:
+  port: 3222
+spring:
+  application:
+    name: tmd
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:session/data/tmd.db?date_string_format=yyyy-MM-dd HH:mm:ss
+    hikari:
+      maximum-pool-size: 1
+
+mybatis-plus:
+  #  configuration:
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  date-format: yyyy-MM-dd HH:mm:ss
+auto-table:
+  enable: true
+
+
+
+
