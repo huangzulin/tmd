@@ -2,6 +2,7 @@ package fun.zulin.tmd.telegram;
 
 
 import cn.hutool.core.convert.Convert;
+import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
 import fun.zulin.tmd.telegram.handler.AuthorizationStateWaitOtherDeviceConfirmationHandler;
 import fun.zulin.tmd.telegram.handler.UpdateFileHandler;
@@ -31,9 +32,6 @@ public class Tmd {
 
     public static TdApi.Chat savedMessagesChat;
 
-    public static final String defaultAppId = "";
-    public static final String defaultApiHash = "";
-
     private final static SimpleTelegramClientFactory clientFactory = new SimpleTelegramClientFactory();
 
 
@@ -45,13 +43,15 @@ public class Tmd {
 
         var appId = System.getenv("APP_ID");
         var apiHash = System.getenv("API_HASH");
-        APIToken apiToken = new APIToken(Convert.toInt(StrUtil.emptyToDefault(appId, defaultAppId)), StrUtil.emptyToDefault(apiHash, defaultApiHash));
+        var test = Boolean.valueOf(StrUtil.emptyToDefault( System.getenv("Test"),"false"));
+
+        APIToken apiToken = new APIToken(Convert.toInt(appId), apiHash);
         TDLibSettings settings = TDLibSettings.create(apiToken);
 
         Path sessionPath = Paths.get("session");
         settings.setDatabaseDirectoryPath(sessionPath.resolve("data"));
         settings.setDownloadedFilesDirectoryPath(sessionPath.resolve("downloads"));
-        //settings.setUseTestDatacenter(true);
+        settings.setUseTestDatacenter(test);
 
         SimpleTelegramClientBuilder clientBuilder = clientFactory.builder(settings);
 
