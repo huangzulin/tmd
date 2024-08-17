@@ -9,7 +9,7 @@ spring:
 
   datasource:
     driver-class-name: org.sqlite.JDBC
-    url: jdbc:sqlite:session/data/tmd.db?date_string_format=yyyy-MM-dd HH:mm:ss
+    url: jdbc:sqlite:data/tmd.db?date_string_format=yyyy-MM-dd HH:mm:ss
     hikari:
       maximum-pool-size: 1
 

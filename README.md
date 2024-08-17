@@ -12,7 +12,7 @@
 
 ```shell
 mkdir -p ./session/data
-docker run --name tmd -d -e APP_ID='YOUR_APP_ID' -e API_HASH='YOUR_API_HASH' -v ./session:/home/app/session --restart=always -p 3222:3222 huangzulin/tmd
+docker run --name tmd -d -e APP_ID='YOUR_APP_ID' -e API_HASH='YOUR_API_HASH' -v ./data:/home/app/data ./downloads:/home/app/downloads --restart=always -p 3222:3222 huangzulin/tmd
 ```
 
 ### 构建
