@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 
 @Data
 @Builder
@@ -59,7 +61,7 @@ public class DownloadItem {
     private int downloadCount;
 
     public long getDownloadBytePerSec() {
-        var timeDiff = Duration.between(this.getDownloadUpdateTime(), LocalDateTime.now()).toSeconds();
+        var timeDiff = Duration.between(this.getDownloadUpdateTime(), LocalDateTime.now(ZoneId.of("Asia/Shanghai"))).toSeconds();
         if (timeDiff > 2) {
             return 0;
         }
@@ -72,7 +74,7 @@ public class DownloadItem {
 
     public LocalDateTime getDownloadUpdateTime() {
         if (downloadUpdateTime == null) {
-            return LocalDateTime.now();
+            return LocalDateTime.now(ZoneId.of("Asia/Shanghai"));
         }
         return downloadUpdateTime;
     }

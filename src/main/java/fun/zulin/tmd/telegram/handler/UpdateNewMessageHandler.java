@@ -9,6 +9,7 @@ import fun.zulin.tmd.utils.SpringContext;
 import it.tdlight.jni.TdApi;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class UpdateNewMessageHandler {
 
@@ -39,7 +40,7 @@ public class UpdateNewMessageHandler {
                 }
                 item = DownloadItem.builder()
                         .caption(video.caption.text)
-                        .createTime(LocalDateTime.now())
+                        .createTime(LocalDateTime.now(ZoneId.of("Asia/Shanghai")))
                         .downloadedSize(0)
                         .fileId(video.video.video.id)
                         .filename(video.video.fileName)

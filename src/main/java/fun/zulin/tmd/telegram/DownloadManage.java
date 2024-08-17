@@ -10,6 +10,7 @@ import it.tdlight.jni.TdApi;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
@@ -99,9 +100,9 @@ public class DownloadManage {
                 } else {
                     item.setDownloadCount(0);
                     var downloadDiff = downloadedSize - item.getDownloadedSize();
-                    var timeDiff = Duration.between(item.getDownloadUpdateTime(), LocalDateTime.now()).toMillis();
+                    var timeDiff = Duration.between(item.getDownloadUpdateTime(), LocalDateTime.now(ZoneId.of("Asia/Shanghai"))).toMillis();
 
-                    item.setDownloadUpdateTime(LocalDateTime.now());
+                    item.setDownloadUpdateTime(LocalDateTime.now(ZoneId.of("Asia/Shanghai")));
                     item.setDownloadedSize(downloadedSize);
 
                     var speed = (((float) downloadDiff / timeDiff) * 1000);
