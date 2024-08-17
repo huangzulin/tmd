@@ -12,6 +12,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 public class DownloadManage {
@@ -22,23 +23,37 @@ public class DownloadManage {
         return CollectionUtil.emptyIfNull(downloadingItems);
     }
 
+    private static final ExecutorService executorService = Executors.newSingleThreadExecutor();
+
     /**
      * 下载视频
      *
      * @param item 视频数据
      */
     public static void download(DownloadItem item) {
-        var service = SpringContext.getBean(DownloadItemServiceImpl.class);
-        Tmd.client.send(new TdApi.DownloadFile(item.getFileId(),  RandomUtil.randomInt(16, 30), 0, 0, true), result -> {
-            var saveItem = service.getByUniqueId(item.getUniqueId());
+        executorService.submit(() -> {
+            CountDownLatch countDownLatch = new CountDownLatch(1);
 
-            //下载完成后更改数据状态
-            saveItem.setState(DownloadState.Complete.name());
-            saveItem.setDownloadedSize(result.get().size);
-            service.updateById(saveItem);
-            //从下载队列中移除
-            removeDownloadingItems(item.getUniqueId());
+            Tmd.client.send(new TdApi.DownloadFile(item.getFileId(), 16, 0, 0, true), result -> {
+                var service = SpringContext.getBean(DownloadItemServiceImpl.class);
+                var saveItem = service.getByUniqueId(item.getUniqueId());
+
+                //下载完成后更改数据状态
+                saveItem.setState(DownloadState.Complete.name());
+                saveItem.setDownloadedSize(result.get().size);
+                service.updateById(saveItem);
+                //从下载队列中移除
+                removeDownloadingItems(item.getUniqueId());
+                countDownLatch.countDown();
+            });
+
+            try {
+                countDownLatch.await(20, TimeUnit.MINUTES);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         });
+
     }
 
 

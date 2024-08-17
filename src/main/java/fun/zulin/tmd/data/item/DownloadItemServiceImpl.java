@@ -38,7 +38,7 @@ public class DownloadItemServiceImpl extends ServiceImpl<DownloadItemMapper, Dow
 
         var wrapper = new LambdaQueryWrapper<DownloadItem>();
         wrapper.in(DownloadItem::getState, DownloadState.Created.name(), DownloadState.Downloading.name(), DownloadState.Pause.name())
-                .orderByDesc(DownloadItem::getCreateTime);
+                .orderByAsc(DownloadItem::getId);
         var items = this.baseMapper.selectList(wrapper);
         return CollectionUtil.emptyIfNull(items);
 

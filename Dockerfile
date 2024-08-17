@@ -19,7 +19,7 @@ RUN mvn -f /home/app/pom.xml clean package -DskipTests
 FROM eclipse-temurin:21
 RUN  apt-get update && apt install openssl zlib1g-dev -y
 WORKDIR /home/app
-RUN mkdir -p "/home/app/session/data"
+RUN mkdir -p "/home/app/data" && mkdir -p "/home/app/downloads"
 COPY --from=build-jar /home/app/target/*.jar app.jar
 EXPOSE 3222
 ENTRYPOINT ["java","-jar","app.jar"]

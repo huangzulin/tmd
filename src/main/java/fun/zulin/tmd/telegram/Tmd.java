@@ -18,6 +18,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
@@ -43,15 +44,18 @@ public class Tmd {
 
         var appId = System.getenv("APP_ID");
         var apiHash = System.getenv("API_HASH");
-        var test = Boolean.valueOf(StrUtil.emptyToDefault( System.getenv("Test"),"false"));
+        var test = Boolean.valueOf(StrUtil.emptyToDefault(System.getenv("Test"), "false"));
 
         APIToken apiToken = new APIToken(Convert.toInt(appId), apiHash);
         TDLibSettings settings = TDLibSettings.create(apiToken);
 
-        Path sessionPath = Paths.get("session");
-        settings.setDatabaseDirectoryPath(sessionPath.resolve("data"));
-        settings.setDownloadedFilesDirectoryPath(sessionPath.resolve("downloads"));
-        settings.setUseTestDatacenter(test);
+        var dataPath = Paths.get("data");
+        Files.createDirectories(dataPath);
+        var downloadsPath = Paths.get("downloads");
+        Files.createDirectories(downloadsPath);
+        settings.setDatabaseDirectoryPath(dataPath);
+        settings.setDownloadedFilesDirectoryPath(downloadsPath);
+        //settings.setUseTestDatacenter(test);
 
         SimpleTelegramClientBuilder clientBuilder = clientFactory.builder(settings);
 
