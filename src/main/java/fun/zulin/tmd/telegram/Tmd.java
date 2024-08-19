@@ -55,7 +55,7 @@ public class Tmd {
         Files.createDirectories(downloadsPath);
         settings.setDatabaseDirectoryPath(dataPath);
         settings.setDownloadedFilesDirectoryPath(downloadsPath);
-        //settings.setUseTestDatacenter(test);
+        settings.setUseTestDatacenter(test);
 
         SimpleTelegramClientBuilder clientBuilder = clientFactory.builder(settings);
 
