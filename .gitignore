@@ -33,3 +33,5 @@ build/
 .vscode/
 /session/
 /tmd.db
+/downloads/
+/data/
