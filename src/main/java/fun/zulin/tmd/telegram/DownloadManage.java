@@ -24,7 +24,7 @@ public class DownloadManage {
         return CollectionUtil.emptyIfNull(downloadingItems);
     }
 
-    private static final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private static final ExecutorService executorService = Executors.newFixedThreadPool(2);
 
     /**
      * 下载视频
