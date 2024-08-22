@@ -1,5 +1,5 @@
 # Build stage
-FROM node:lts-alpine as build-vue
+FROM node:lts-alpine AS build-vue
 RUN apk add --update git python3 make g++ && rm -rf /var/cache/apk/*
 RUN git clone https://github.com/huangzulin/tmd-vue /app 2> /dev/null || git -C /app pull
 WORKDIR /app
