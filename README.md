@@ -11,7 +11,7 @@
 * `PHONE` 登录Telegram 的手机号码
 
 ```shell
-mkdir -p ./session/data
+mkdir -p ./data && mkdir -p ./downloads
 docker run --name tmd -d -e APP_ID='YOUR_APP_ID' -e API_HASH='YOUR_API_HASH' -v ./data:/home/app/data -v ./downloads:/home/app/downloads --restart=always -p 3222:3222 huangzulin/tmd
 ```
 
