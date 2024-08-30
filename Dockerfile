@@ -22,5 +22,8 @@ WORKDIR /home/app
 RUN mkdir -p "/home/app/data" && mkdir -p "/home/app/downloads"
 COPY --from=build-jar /home/app/target/*.jar app.jar
 EXPOSE 3222
+
+HEALTHCHECK --interval=30s --timeout=10s CMD curl -f http://localhost:3222 || exit 1
+
 ENTRYPOINT ["java","-jar","app.jar"]
 
